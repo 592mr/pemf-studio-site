@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PEMF Studio — make your clients' progress impossible to ignore</title>
+<meta name="description" content="PEMF Studio gives your clients their own wellness timeline — session by session — so they see the results of expensive, cumulative treatment instead of guessing. Built for Pulse PEMF practitioners.">
+<meta property="og:title" content="PEMF Studio — make your clients' progress impossible to ignore">
+<meta property="og:description" content="Your clients quit at session four. Not because it isn't working — because they can't see that it is.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0b0d'/%3E%3Cpath d='M6 20c3-10 5 4 8-2s4 8 7 0 3-4 5-6' stroke='%235fe3c1' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#0a0b0d; --ink-2:#111318; --line:rgba(255,255,255,.09);
+    --text:#e9edf2; --muted:#98a2b3; --teal:#5fe3c1; --amber:#f0b36a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--text);font:16px/1.65 var(--sans);
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .glow{position:fixed;inset:-20% -10% auto -10%;height:70vh;pointer-events:none;z-index:0;
+    background:radial-gradient(45% 45% at 30% 20%,rgba(95,227,193,.13),transparent 70%),
+               radial-gradient(40% 40% at 75% 10%,rgba(240,179,106,.10),transparent 70%)}
+  header{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;
+    padding:22px 0;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+  .pulse{width:26px;height:26px;border-radius:7px;background:linear-gradient(140deg,#5fe3c1,#2b8f78);
+    display:grid;place-items:center;color:#04241d;font-size:13px;font-weight:800}
+  nav a{color:var(--muted);text-decoration:none;margin-left:26px;font-size:14px}
+  nav a:hover{color:var(--text)}
+  .btn{display:inline-block;background:var(--teal);color:#04241d;font-weight:650;text-decoration:none;
+    padding:13px 22px;border-radius:10px;font-size:15px;letter-spacing:-.01em;
+    box-shadow:0 8px 30px rgba(95,227,193,.22);transition:transform .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
+  section{position:relative;z-index:1}
+
+  .hero{padding:88px 0 64px}
+  .eyebrow{color:var(--teal);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;margin-bottom:20px}
+  h1{font:600 56px/1.06 var(--serif);letter-spacing:-.025em;margin:0 0 22px;max-width:830px}
+  h1 em{font-style:normal;color:var(--amber)}
+  .lede{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 34px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .micro{color:#6b7480;font-size:13px;margin-top:16px}
+
+  .visual{margin:56px 0 0;background:linear-gradient(180deg,#12151b,#0d0f13);border:1px solid var(--line);
+    border-radius:16px;padding:26px 26px 18px}
+  .v-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px;
+    font-size:13px;color:var(--muted)}
+  .v-head strong{color:var(--text);font-size:15px;font-weight:600}
+  .bars{display:flex;align-items:flex-end;gap:9px;height:170px}
+  .barwrap{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px}
+  .bar{width:100%;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#2f6f61,#1d3b35);
+    transition:height .4s ease}
+  .bar.hi{background:linear-gradient(180deg,#5fe3c1,#2b8f78)}
+  .barwrap span{font-size:11px;color:#5c6672}
+  .v-foot{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;
+    border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .v-foot b{color:var(--text);font-weight:600}
+
+  .band{padding:80px 0;border-top:1px solid var(--line)}
+  h2{font:600 34px/1.15 var(--serif);letter-spacing:-.02em;margin:0 0 18px;max-width:700px}
+  h2.big{font-size:40px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+  .card{background:#0f1216;border:1px solid var(--line);border-radius:14px;padding:26px}
+  .card h3{font-size:16px;margin:0 0 10px;letter-spacing:-.01em}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .card .n{color:var(--teal);font:600 13px var(--sans);letter-spacing:.1em;margin-bottom:12px}
+  .problem{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start}
+  .stat{border-left:2px solid var(--amber);padding-left:18px;margin-top:26px}
+  .stat b{display:block;font:600 30px var(--serif);color:var(--amber);letter-spacing:-.02em}
+  .stat span{color:var(--muted);font-size:14px}
+  ul.clean{list-style:none;padding:0;margin:16px 0 0}
+  ul.clean li{position:relative;padding-left:26px;margin-bottom:12px;color:var(--muted);font-size:15px}
+  ul.clean li:before{content:"";position:absolute;left:0;top:9px;width:11px;height:11px;
+    border-radius:3px;background:rgba(95,227,193,.16);border:1px solid rgba(95,227,193,.5)}
+
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+  .plan{background:linear-gradient(180deg,#12161c,#0d1014);border:1px solid var(--line);
+    border-radius:16px;padding:30px}
+  .plan.feature{border-color:rgba(95,227,193,.42);box-shadow:0 0 0 1px rgba(95,227,193,.10) inset}
+  .plan h3{margin:0 0 6px;font-size:15px;color:var(--muted);font-weight:600;letter-spacing:.02em;
+    text-transform:uppercase;font-size:11px;letter-spacing:.14em}
+  .amt{font:600 42px/1 var(--serif);letter-spacing:-.03em;margin:12px 0 4px}
+  .amt small{font:400 15px var(--sans);color:var(--muted);letter-spacing:0}
+  .plan p{color:var(--muted);font-size:14px;margin:14px 0 0}
+
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";float:right;color:var(--teal);font-weight:400;font-size:20px;line-height:1}
+  details p{color:var(--muted);margin:12px 0 0;max-width:720px;font-size:15px}
+
+  .final{text-align:center;padding:90px 0}
+  .final h2{margin:0 auto 16px;max-width:620px}
+  .final p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+  footer{border-top:1px solid var(--line);padding:34px 0 50px;color:#5c6672;font-size:13px;
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  @media(max-width:820px){
+    h1{font-size:38px} h2{font-size:27px} h2.big{font-size:30px}
+    .grid,.price,.problem{grid-template-columns:1fr;gap:18px}
+    nav{display:none} .hero{padding:56px 0 40px}
+    .bars{height:130px}
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+
+  <header>
+    <div class="brand"><span class="pulse">~</span> PEMF Studio</div>
+    <nav>
+      <a href="#problem">Why clients leave</a>
+      <a href="#product">The app</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#demo">Demo</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">For Pulse PEMF practitioners</div>
+    <h1>Your clients quit at session four.<br>Not because it isn't working —<br>because <em>they can't see that it is.</em></h1>
+    <p class="lede">PEMF works by compounding. Results build over eight, twelve, twenty sessions. But a
+      client can't attribute a good morning to a treatment three weeks ago, so they drift — right when
+      the compounding would have started paying them back.</p>
+    <div class="cta-row">
+      <a class="btn" href="mailto:rippard.matt@gmail.com?subject=PEMF%20Studio%20pilot%20%E2%80%94%2012%20minutes">Book the 12-minute demo</a>
+      <a class="btn ghost" href="#product">See what your client sees</a>
+    </div>
+    <p class="micro">Pilot onboarding is running now. No deck — you see your own practice name on the screen.</p>
+
+    <div class="visual">
+      <div class="v-head">
+        <strong>Morning pain, self-reported</strong>
+        <span>Mar · 14 sessions</span>
+      </div>
+      <div class="bars">
+        <div class="barwrap"><div class="bar" style="height:92%"></div><span>1</span></div>
+        <div class="barwrap"><div class="bar" style="height:88%"></div><span>2</span></div>
+        <div class="barwrap"><div class="bar" style="height:84%"></div><span>3</span></div>
+        <div class="barwrap"><div class="bar" style="height:78%"></div><span>4</span></div>
+        <div class="barwrap"><div class="bar" style="height:72%"></div><span>5</span></div>
+        <div class="barwrap"><div class="bar" style="height:70%"></div><span>6</span></div>
+        <div class="barwrap"><div class="bar" style="height:63%"></div><span>7</span></div>
+        <div class="barwrap"><div class="bar" style="height:58%"></div><span>8</span></div>
+        <div class="barwrap"><div class="bar" style="height:54%"></div><span>9</span></div>
+        <div class="barwrap"><div class="bar" style="height:48%"></div><span>10</span></div>
+        <div class="barwrap"><div class="bar" style="height:43%"></div><span>11</span></div>
+        <div class="barwrap"><div class="bar" style="height:39%"></div><span>12</span></div>
+        <div class="barwrap"><div class="bar" style="height:34%"></div><span>13</span></div>
+        <div class="barwrap"><div class="bar hi" style="height:29%"></div><span>14</span></div>
+      </div>
+      <div class="v-foot">
+        <span>Day 1: <b>7 / 10</b></span>
+        <span>Session 14: <b>3 / 10</b></span>
+        <span>Trend: <b>−57%</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="problem">
+    <div class="problem">
+      <div>
+        <h2 class="big">"Is this actually working?"</h2>
+        <p class="lede" style="margin-bottom:0">You hear it around the fourth session. The honest answer is
+          a feeling, not evidence — so the client does what any reasonable person does with an
+          expensive, invisible commitment: they stop.</p>
+        <p style="color:var(--muted)">The work is often good. The proof is missing. Those are different
+          problems, and only one of them is a software problem.</p>
+      </div>
+      <div>
+        <div class="stat"><b>10–20%</b><span>typical no-show rate in a two-chair clinic</span></div>
+        <div class="stat"><b>$1.5k–4k</b><span>monthly revenue that walks out with it</span></div>
+        <div class="stat"><b>Session 3–5</b><span>where a compounding treatment usually loses its client</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="product">
+    <h2 class="big">Give them a timeline instead of a promise.</h2>
+    <p class="lede">Six taps at the end of each session. What comes out the other side is the reason
+      they renew, refer, and stop asking whether it's working.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="n">WHAT YOUR CLIENT SEES</div>
+        <h3>Their own numbers, over time</h3>
+        <p>Morning pain, mobility, sleep, energy — plotted across every session. Not your claim about
+          what PEMF does. Their report about their own week, in a shape that's impossible to argue with.</p>
+      </div>
+      <div class="card">
+        <div class="n">WHAT THEY FORWARD</div>
+        <h3>A progress report that justifies the price</h3>
+        <p>One page at renewal time: 14 sessions, −57% morning pain, walking 40 minutes without
+          stopping. The artifact a spouse reads, a friend asks about, and a review gets written from.</p>
+      </div>
+      <div class="card">
+        <div class="n">WHAT YOU GET BACK</div>
+        <h3>The drift, caught early</h3>
+        <p>Clients who haven't booked in eleven days get a nudge before they've quietly decided to
+          stop. You see the cohort: who's compounding, who's plateaued, who's gone quiet.</p>
+      </div>
+      <div class="card">
+        <div class="n">THE UNGLAMOROUS PART</div>
+        <h3>Front desk, included</h3>
+        <p>Intake, booking, no-show chase, deposits. Table stakes, not the pitch — but it's why this is
+          a system rather than one nice screen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="pricing">
+    <h2>Pilot pricing.</h2>
+    <p class="lede">Set up and branded for one practice, running inside a week.</p>
+    <div class="price">
+      <div class="plan feature">
+        <h3>Pilot</h3>
+        <div class="amt">$1,500 <small>one-time</small></div>
+        <p style="color:var(--text);margin-top:8px">Setup, branding, and your first 90 days — up to 25 clients.</p>
+        <ul class="clean">
+          <li>Your name, logo and colors on the client app</li>
+          <li>Session capture configured around your protocols</li>
+          <li>Progress report you can hand over at renewal</li>
+          <li>Intake, booking and deposit links live</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>After the pilot</h3>
+        <div class="amt">$149 <small>/ month</small></div>
+        <p>Cancel anytime. Multi-location practices $299/month.</p>
+        <ul class="clean">
+          <li>Unlimited clients and sessions</li>
+          <li>Automated rebooking nudges</li>
+          <li>Outcome reporting across your whole practice</li>
+          <li>Direct line for support and requests</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="demo">
+    <h2>Questions practitioners actually ask</h2>
+    <div style="margin-top:26px">
+      <details><summary>My clients won't use another app.</summary>
+        <p>They don't have to. You log the session in ten seconds; they answer four taps at the end of
+          the visit. If a client never opens it, you still get the report and the trend line.</p></details>
+      <details><summary>I already keep notes.</summary>
+        <p>Then you're ahead — bring them to the call. The difference is what happens when those notes
+          become a timeline the client can see, hold, and forward. Notes inform you. A timeline keeps
+          them.</p></details>
+      <details><summary>Is this a medical record? HIPAA?</summary>
+        <p>It's a wellness journal, not a clinical record, and it makes no medical claims. The app shows
+          the client's own reported scores — never an asserted outcome. We'll sign a simple data
+          processing agreement, and your data stays yours.</p></details>
+      <details><summary>Does it work with Pulse equipment?</summary>
+        <p>Yes — it's built around the Pulse product line: protocols, timer, intensity, and session
+          history map to the machines you already run.</p></details>
+      <details><summary>What does it take to get started?</summary>
+        <p>One call, then a week. You send your logo and your typical protocols; we brand the app, load
+          your first clients, and you run a real session in it before anything goes live.</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Prove your work to the only people who need to see it.</h2>
+    <p>Twelve minutes, your practice name on the screen, no deck.</p>
+    <a class="btn" href="mailto:rippard.matt@gmail.com?subject=PEMF%20Studio%20pilot%20%E2%80%94%2012%20minutes">Book the 12-minute demo</a>
+  </section>
+
+  <footer>
+    <span>© 2026 PEMF Studio. A wellness journal — not a medical device, and makes no clinical claims.</span>
+    <span>Built for Pulse PEMF practitioners.</span>
+  </footer>
+</div>
+</body>
+</html>
